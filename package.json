@@ -1,0 +1,40 @@
+{
+  "name": "soa_product",
+  "version": "1.0.0",
+  "description": "product service",
+  "main": "\t",
+  "scripts": {
+    "db:migrate": "sequelize db:migrate",
+    "db:seed:all": "sequelize db:seed:all",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon -e js,json index.js",
+    "start:manual": "sequelize db:drop && sequelize db:create && npm run db:migrate && npm run db:seed:all && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/x0r3k/SOA_AutoShop_Product.git"
+  },
+  "keywords": [
+    "SOA",
+    "Product",
+    "Nure",
+    "Autoshop"
+  ],
+  "author": "KDolhopolov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/x0r3k/SOA_AutoShop_Product/issues"
+  },
+  "homepage": "https://github.com/x0r3k/SOA_AutoShop_Product#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.7.0",
+    "http-errors": "^1.8.0",
+    "mysql2": "^2.2.5",
+    "nodemon": "^2.0.6",
+    "sequelize": "^6.3.5"
+  }
+}
