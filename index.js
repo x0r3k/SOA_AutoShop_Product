@@ -4,7 +4,8 @@ const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
 const createError = require('http-errors');
-
+const { formErrorObject, errorHandling, MAIN_ERROR_CODES } = require('./src/services/errorHandling');
+const productRouter = require('./src/api/routers/product.router');
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -16,9 +17,13 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use('/api/product', productRouter);
+
 app.use('*', (req, res, next) => {
     return next(createError(formErrorObject(MAIN_ERROR_CODES.NOT_FOUND)));
 });
+
+app.use(errorHandling);
 
 try {
     httpServer.listen(HTTP_PORT, async () => {
