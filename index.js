@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const createError = require('http-errors');
 const { formErrorObject, errorHandling, MAIN_ERROR_CODES } = require('./src/services/errorHandling');
 const productRouter = require('./src/api/routers/product.router');
+const adminProductRouter = require('./src/api/routers/admin.product.router');
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -18,6 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api/product', productRouter);
+app.use('/api/admin/product', adminProductRouter);
 
 app.use('*', (req, res, next) => {
     return next(createError(formErrorObject(MAIN_ERROR_CODES.NOT_FOUND)));

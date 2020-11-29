@@ -13,5 +13,22 @@ module.exports = {
     param_Category_Id: () => {
         return param('categoryId').exists().withMessage('Is required').bail()
           .custom(value => isNumber(value) ? true : false).withMessage('ID Should be an integer value').bail();
-      },
+    },
+    body_Product_Name: (isRequired) => {
+      return isRequiredParameter(isRequired, 'name').notEmpty().withMessage('Should not be empty').bail()
+        .isString().withMessage('Should be string')
+        .isLength({ max: 255 }).withMessage('Max length is 255 symbols');
+    },
+    body_Product_Price: (isRequired) => {
+      return isRequiredParameter(isRequired, 'price').notEmpty().withMessage('Should not be empty').bail()
+        .isFloat().withMessage('Should be float');
+    },
+    body_Product_Amount: (isRequired) => {
+      return isRequiredParameter(isRequired, 'amount').notEmpty().withMessage('Should not be empty').bail()
+        .isInt().withMessage('Should be integer');
+    },
+    body_Product_Category: (isRequired) => {
+      return isRequiredParameter(isRequired, 'category').notEmpty().withMessage('Should not be empty').bail()
+        .isInt().withMessage('Should be integer');
+    }
 }
