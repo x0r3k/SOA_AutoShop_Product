@@ -9,10 +9,9 @@ async function authUser(req, res, next) {
     try {
         let user = await axios(`http://localhost:${process.env.AUTH_HTTP_PORT}/api/auth/checkToken`, {
             headers: {
-                'Authorization': req.headers.authorization
+                'Authorization': req.headers.authorization || ''
             }
         });
-        console.log(user.data);
         req.user = user.data;
         next();
     } catch (error) {

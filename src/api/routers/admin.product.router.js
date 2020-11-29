@@ -24,14 +24,22 @@ router.post(
 
 router.put(
     '/updateProduct/:productId',
+    authUser,
+    authRole([1]),
     [ 
-        param_Product_Id()
+        param_Product_Id(),
+        body_Product_Name(false),
+        body_Product_Price(false),
+        body_Product_Amount(false),
+        body_Product_Category(false)
     ],
     updateProduct
 );
 
 router.delete(
     '/deleteProduct/:productId',
+    authUser,
+    authRole([1]),
     [ 
         param_Product_Id()
     ],

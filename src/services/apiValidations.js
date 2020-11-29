@@ -30,5 +30,9 @@ module.exports = {
     body_Product_Category: (isRequired) => {
       return isRequiredParameter(isRequired, 'category').notEmpty().withMessage('Should not be empty').bail()
         .isInt().withMessage('Should be integer');
+    },
+    body_Category_Category: (isRequired) => {
+      return isRequiredParameter(isRequired, 'category')
+        .custom(value => isNumber(value) || null ? true : false).withMessage('Should be an integer value or null').bail();
     }
 }
