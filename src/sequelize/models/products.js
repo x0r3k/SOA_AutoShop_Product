@@ -30,6 +30,10 @@ module.exports = (sequelize, DataType) => {
     productsTable.belongsTo(models.categories, 
       { foreignKey: { name: 'fkCategoryId', allowNull: false }, foreignKeyConstraint: true}
     );
+
+    productsTable.hasMany(models.compatibilities,
+      { foreignKey: { name: 'fkProductId', allowNull: false }, foreignKeyConstraint: true }
+    );
   }
 
   return productsTable;

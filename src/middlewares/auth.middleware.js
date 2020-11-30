@@ -15,7 +15,7 @@ async function authUser(req, res, next) {
         req.user = user.data;
         next();
     } catch (error) {
-        if(error.response.data && error.response.data.code && error.response.data.message) {
+        if(error.response && error.response.data && error.response.data.code && error.response.data.message) {
             return next(createError(formErrorObject({ERROR_CODE: error.response.data.code, HTTP_CODE: error.response.status, MESSAGE: error.response.data.message })));
         }
         return next(createError(formErrorObject(MAIN_ERROR_CODES.SYSTEM_ERROR, 'Something went wrong, please try again')));
