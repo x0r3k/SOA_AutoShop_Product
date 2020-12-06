@@ -14,10 +14,15 @@ module.exports = {
         return param('categoryId').exists().withMessage('Is required').bail()
           .custom(value => isNumber(value) ? true : false).withMessage('ID Should be an integer value').bail();
     },
+    body_Product_Id: (isRequired) => {
+      return isRequiredParameter(isRequired, 'productId').notEmpty().withMessage('Should not be empty').bail()
+        .isInt().withMessage('Should be an integer value').bail();
+    },
     body_Category_Id: (isRequired) => {
       return isRequiredParameter(isRequired, 'categoryId').notEmpty().withMessage('Should not be empty').bail()
         .custom(value => isNumber(value) ? true : false).withMessage('Should be an integer value').bail();
     },
+    
     body_Product_Name: (isRequired) => {
       return isRequiredParameter(isRequired, 'name').notEmpty().withMessage('Should not be empty').bail()
         .isString().withMessage('Should be string')

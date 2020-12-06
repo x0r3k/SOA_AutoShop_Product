@@ -1,8 +1,10 @@
 const router = require('express').Router();
-const { getProducts, getProductById, getProductByCategory } = require('../controllers/product.controller');
+const { getProducts, getProductById, getProductByCategory, changeProductAmount, changeProductsAmount } = require('../controllers/product.controller');
 const {
     param_Product_Id,
     param_Category_Id,
+    body_Product_Id,
+    body_Product_Amount
 } = require('../../services/apiValidations');
 
 router.get(
@@ -25,5 +27,20 @@ router.get(
     ],
     getProductByCategory
 );
+
+router.put(
+    '/changeProductAmount/:productId',
+    [ 
+        param_Product_Id(),
+        body_Product_Amount(true),
+    ],
+    changeProductAmount
+);
+
+router.put(
+    '/changeProductsAmount',
+    changeProductsAmount
+);
+
 
 module.exports = router;
