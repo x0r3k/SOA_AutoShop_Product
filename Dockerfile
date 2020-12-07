@@ -10,4 +10,5 @@ COPY . /usr/src/app
 
 ENV NODE_ENV=docker
 
+EXPOSE 8072
 CMD ["npm", "run", "start:manual"]
