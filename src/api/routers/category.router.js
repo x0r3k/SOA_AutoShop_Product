@@ -3,7 +3,6 @@ const { getCategories } = require('../controllers/category.controller');
 const {
     body_Category_Id
 } = require('../../services/apiValidations');
-const { authUser, authRole } = require('../../middlewares/auth.middleware');
 
 router.get(
     '/getCategories',

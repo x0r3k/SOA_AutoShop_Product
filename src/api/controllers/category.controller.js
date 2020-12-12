@@ -10,7 +10,7 @@ module.exports = {
         if (!errors.isEmpty()) {
             return next(createError(formErrorObject(MAIN_ERROR_CODES.VALIDATION_BODY, 'Invalid request params', errors.errors)));
         }
-        const { categoryId } = req.body;
+        const { categoryId } = req.query;
         if(!categoryId) {
             const foundedCategories = await categories.findAll({ where: {fkCategoryId: null} });
             return res.status(200).json({ foundedCategories });
