@@ -14,6 +14,14 @@ module.exports = {
         return param('categoryId').exists().withMessage('Is required').bail()
           .isInt().withMessage('ID Should be an integer value').bail();
     },
+    query_Category_Id: () => {
+      return query('categoryId').exists().withMessage('Is required').bail()
+        .isInt().withMessage('ID Should be an integer value').bail();
+    },
+    query_Car_Id: () => {
+      return query('carId').exists().withMessage('Is required').bail()
+        .isInt().withMessage('ID Should be an integer value').bail();
+    },
     body_Product_Id: (isRequired) => {
       return isRequiredParameter(isRequired, 'productId').notEmpty().withMessage('Should not be empty').bail()
         .isInt().withMessage('Should be an integer value').bail();

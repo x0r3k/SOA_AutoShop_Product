@@ -1,10 +1,12 @@
 const router = require('express').Router();
-const { getProducts, getProductById, getProductByCategory, changeProductAmount, changeProductsAmount } = require('../controllers/product.controller');
+const { getProducts, getProductById, getProductByCategory, changeProductAmount, changeProductsAmount, getProductByCategoryCar } = require('../controllers/product.controller');
 const {
     param_Product_Id,
     param_Category_Id,
     body_Product_Id,
-    body_Product_Amount
+    body_Product_Amount,
+    query_Category_Id,
+    query_Car_Id
 } = require('../../services/apiValidations');
 
 router.get(
@@ -18,6 +20,15 @@ router.get(
         param_Product_Id()
     ],
     getProductById
+);
+
+router.get(
+    '/getProductByCategoryCar',
+    [ 
+        query_Category_Id(),
+        query_Car_Id(),
+    ],
+    getProductByCategoryCar
 );
 
 router.get(
