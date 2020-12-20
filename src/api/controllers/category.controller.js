@@ -55,4 +55,21 @@ module.exports = {
         return next(createError(formErrorObject(MAIN_ERROR_CODES.SYSTEM_ERROR, 'Something went wrong, please try again')));
       }
     },
+
+    getCategoryById: async (req, res, next) => {
+      try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return next(createError(formErrorObject(MAIN_ERROR_CODES.VALIDATION_BODY, 'Invalid request params', errors.errors)));
+        }
+        const { categoryId } = req.params;
+        const foundedCategory = await categories.findByPk(categoryId);
+        if(!foundedCategory) return next(createError(formErrorObject(MAIN_ERROR_CODES.VALIDATION_BODY, 'Category not found')));
+
+        return res.status(200).json({ foundedCategory });
+      } catch (error) {
+        console.log(error);
+        return next(createError(formErrorObject(MAIN_ERROR_CODES.SYSTEM_ERROR, 'Something went wrong, please try again')));
+      }
+    },
 }  

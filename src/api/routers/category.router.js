@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getCategories, getCategoriesByParentId } = require('../controllers/category.controller');
+const { getCategories, getCategoriesByParentId, getCategoryById } = require('../controllers/category.controller');
 const {
     body_Category_Id
 } = require('../../services/apiValidations');
@@ -15,6 +15,14 @@ router.get(
         body_Category_Id(false)
     ],
     getCategoriesByParentId
+);
+
+router.get(
+    '/getCategoryById/:categoryId',
+    [
+        body_Category_Id(false)
+    ],
+    getCategoryById
 );
 
 module.exports = router;
